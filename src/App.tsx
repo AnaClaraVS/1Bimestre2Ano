@@ -102,6 +102,10 @@ const criaturas = cartas.slice(5, 10)
 const [cartaAgente, setCartaAgente] = useState<ICard | null>(null)
 const [cartaCriatura, setCartaCriatura] = useState<ICard | null>(null)
 
+const [pontosAgente, setPontosAgente] = useState(0)
+const [pontosCriatura, setPontosCriatura] = useState(0)
+
+
 function sortearCartas() {
   const ag = agentes[Math.floor(Math.random() * agentes.length)]
   const ct = criaturas[Math.floor(Math.random() * criaturas.length)]
@@ -116,8 +120,12 @@ function batalhar() {
 
   if ((cartaAgente.ATQ + cartaAgente.PD)/cartaCriatura.PV > (cartaCriatura.ATQ + cartaCriatura.PV)/(cartaAgente.PV * cartaAgente.ATQ)) {
     setResultado("Agente venceu!")  
+    setPontosAgente(pontosAgente + 1)
+
   } else if ((cartaAgente.ATQ + cartaAgente.PD)/cartaCriatura.PV  < (cartaCriatura.ATQ + cartaCriatura.PV)/(cartaAgente.PV * cartaAgente.ATQ)) {
     setResultado("Criatura venceu!")
+    setPontosCriatura(pontosCriatura + 1)
+
   } else {
     setResultado("Empate!")
   }
@@ -125,7 +133,13 @@ function batalhar() {
   
   return (
     <div className="Container">
-      <Header/>
+        <section className='Header'>
+        <Header/>
+      <div className='placar'>
+        <h2>Placar</h2>
+        <p>Agente: {pontosAgente} | Criatura: {pontosCriatura}</p>
+      </div>
+    </section>
 
       <div className="battleArea">
   {cartaAgente && cartaCriatura && (

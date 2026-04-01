@@ -29,7 +29,6 @@
 
 .titu{
   color: var(--text #f0f0f0)
-  
 }
 
 
@@ -38,6 +37,12 @@ Header{
   color: azure;
 }
 
+.Header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px
+}
 
 .cardsPlacement {
     display: flex;
